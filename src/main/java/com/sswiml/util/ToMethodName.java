@@ -1,8 +1,10 @@
-package com.sswiml.util;
+﻿package com.sswiml.util;
 
 public enum ToMethodName {
 
-    函数1("t1"),函数2("t2"),函数3("t3");
+
+    姓名("getName"),年龄("getAge"),身份证号("getIdCardNum"),整数("getInteger"),浮点数("getFloat");
+
 
     private String methodName;
     ToMethodName(String methodName) {
@@ -13,7 +15,7 @@ public enum ToMethodName {
     }
 
     public static boolean contains(String type){
-        //System.out.println("ToMethodName.contains");
+
         if(type==null) return false;
         for(ToMethodName typeEnum : ToMethodName.values()){
             if(typeEnum.name().equals(type)){
@@ -22,7 +24,6 @@ public enum ToMethodName {
         }
         return false;
     }
-
 
 
 }

@@ -11,8 +11,7 @@ public class StringUtil {
      * @param split 分隔符
      * @return
      */
-    public static List<String> parseWord(String oldString,char split){
-        List<String> newStringList=new LinkedList<String>();
+    public static List<String> parseWord(List<String> newStringList,String oldString,char split){
         String temp="";
         for (int i=0;i<oldString.length();++i){
             char c=oldString.charAt(i);
@@ -33,4 +32,15 @@ public class StringUtil {
         return true;
     }
 
+    public static String getTableName(String str){
+       return str.substring(0,str.indexOf("."));
+    }
+
+    public static void main(String[] args){
+        System.out.println(getTableName("aaa.bbb"));
+    }
+
+    public static String getTableField(String str) {
+        return str.substring(str.indexOf(".")+1,str.length());
+    }
 }
