@@ -13,7 +13,6 @@ public enum ToMethodName {
     }
 
     public static boolean contains(String type){
-        System.out.println("ToMethodName.contains");
         if(type==null) return false;
         for(ToMethodName typeEnum : ToMethodName.values()){
             if(typeEnum.name().equals(type)){

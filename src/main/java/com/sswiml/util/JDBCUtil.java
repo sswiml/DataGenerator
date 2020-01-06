@@ -104,7 +104,7 @@ public class JDBCUtil {
                 Map<String,String> columnMap=new HashMap<String, String>();
                 columnMap.put("TYPE_NAME",resultSet.getString("TYPE_NAME"));
                 columnMap.put("COLUMN_SIZE",resultSet.getString("COLUMN_SIZE"));
-                tableFieldMap.put(resultSet.getString("COLUMN_NAME"),columnMap);
+                tableFieldMap.put(resultSet.getString("COLUMN_NAME").toLowerCase(),columnMap);
 
             } catch (SQLException e) {
                 e.printStackTrace();
