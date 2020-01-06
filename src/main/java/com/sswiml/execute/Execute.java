@@ -63,9 +63,9 @@ public class Execute {
     public static void fieldKindMapFun() {
         fieldKindMap = new HashMap<>();
         //全小写
-        fieldKindMap.put("orders.username".toLowerCase(), "函数1");
-        fieldKindMap.put("orders.id".toLowerCase(), "函数1");
-        fieldKindMap.put("flowers.id".toLowerCase(),"函数1");
+        fieldKindMap.put("orders.username".toLowerCase(), "姓名");
+        fieldKindMap.put("orders.id".toLowerCase(), "整数");
+        fieldKindMap.put("flowers.id".toLowerCase(),"整数");
     }
 
     //fieldLimitMap限制范围 key-value "table.field"-"(10,100)"
@@ -79,7 +79,7 @@ public class Execute {
 
     public static void connectFieldMapFun(){
         connectFieldMap=new HashMap<>();
-        connectFieldMap.put("id".toLowerCase(),"函数1");
+        connectFieldMap.put("id".toLowerCase(),"整数");
     }
 
     /********************************配置部分 end********************************/
@@ -240,6 +240,10 @@ public class Execute {
             tablefieldmap.put(tablename,new JDBCUtil().getField(tablename));
     }
 
+    //fieldLimitMap限制范围 key-value "table.field"-"(10,100)"
+    //Integer类(a,b) a<=x&&x<=b
+    //日期类(yyyy-mm-dd hh:mm:ss,YYYY-MM-DD HH:MM:SS)/(yyyy-mm-dd,YYYY-MM-DD)/...
+    //Float类(a,b,c) a<=x&&x<=b c为精度
 
     /**
      * 格式判断 先不判断了
@@ -250,7 +254,6 @@ public class Execute {
      * @return
      */
     public static String judgeLimit(String typeName, String columnSize, String limit) {
-
         return limit;
     }
 
@@ -292,10 +295,8 @@ public class Execute {
                                 }
                             else {
                                 System.out.println("get");
-                                methodResult = getMethodResultProxy(new KindsUtil(), methodName, TYPE_NAME, resultlimit);
-
+                                methodResult = getMethodResultProxy(new KindsUtil(), methodName, TYPE_NAME, limit);
                             }
-//                       System.out.println("methodResult"+methodResult);
 
                             if (resultStructMap.get(tablename) == null) {
                                 List<String> structList = new LinkedList<>();
@@ -319,15 +320,14 @@ public class Execute {
 
                     });
                 });
-               // Map<String, Map<String, String>> columnmap = getField(tablename);
 
-            //}
 
             //连接字段处理(用顺序来说,能够把非连接的情况覆盖),对生成的结果集数据进行处理
             connectFieldList.forEach((List<String> list)->{
                 String methodName=ToMethodName.valueOf(list.get(0)).getMethodName();
+                String limit=fieldLimitMap.get(list.get(1));
                 String result = getMethodResultProxy(new KindsUtil(), methodName,
-                        tablefieldmap.get(StringUtil.getTableName(list.get(1))).get(StringUtil.getTableField(list.get(1))).get("TYPE_NAME"), "limit");
+                        tablefieldmap.get(StringUtil.getTableName(list.get(1))).get(StringUtil.getTableField(list.get(1))).get("TYPE_NAME"), limit);
                 System.out.println("list "+list);
 
                 for (int j=1;j<list.size();++j){

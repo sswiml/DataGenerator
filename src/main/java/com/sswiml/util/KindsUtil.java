@@ -8,16 +8,31 @@ import java.util.Random;
  */
 public class KindsUtil {
 
-    public static String t1(String obj){
-        Random r=new Random();
-        return r.nextInt(10)+obj;
-    }
-    public static String t2(){
-        return "t2";
-    }
-    public static String t3(){
-        return "t3";
+    /**
+     * 生成姓名
+     * @param limit
+     * @return
+     */
+    public static String getName(String limit){
+        return "idea";
     }
 
+    /**
+     * 生成年龄
+     * @param limit
+     * @return
+     */
+    public static String getAge(String limit){
 
+        return "";
+    }
+    public static String getIdCardNum(String limit){
+        return "";
+    }
+    public static String getInteger(String limit){
+        return "1";
+    }
+    public static String getFloat(String limit){
+        return "";
+    }
 }

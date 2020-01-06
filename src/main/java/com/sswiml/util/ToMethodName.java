@@ -2,7 +2,7 @@ package com.sswiml.util;
 
 public enum ToMethodName {
 
-    函数1("t1"),函数2("t2");
+    姓名("getName"),年龄("getAge"),身份证号("getIdCardNum"),整数("getInteger"),浮点数("getFloat");
 
     private String methodName;
     ToMethodName(String methodName) {
